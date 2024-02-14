@@ -1,22 +1,53 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+const Home = () => import('@/views/home/Home')
+const Group = () => import('@/views/group/Group')
+const Community = () => import('@/views/community/Community')
+const Cart = () => import('@/views/cart/Cart')
+const Profile = () => import('@/views/profile/Profile')
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/home'
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/home',
+    component: Home,
+    meta: {
+      title: '首页'
+    }
+  },
+  {
+    path: '/group',
+    component: Group,
+    meta: {
+      title: '全体橘合'
+    }
+  },
+  {
+    path: '/community',
+    component: Community,
+    meta: {
+      title: '橘子贴吧'
+    }
+  },
+  {
+    path: '/cart',
+    component: Cart,
+    meta: {
+      title: '购物车'
+    }
+  },
+  {
+    path: '/profile',
+    component: Profile,
+    meta: {
+      title: '我的'
+    }
   }
 ]
 
@@ -24,6 +55,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+// 全局后置守卫
+router.afterEach((to, from) => {
+
+  // 修改页面标题
+  if (to.meta && to.meta.title) {
+    document.title = to.meta.title + ' | 橘子有点点甜'
+  }
 })
 
 export default router
