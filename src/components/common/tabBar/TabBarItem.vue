@@ -34,7 +34,7 @@ export default {
 .tab-bar-item {
   flex: 1;
   text-align: center;
-  font-size: var(--font-normal-size);
+  font-size: var(--font-small-size);
   color: var(--color-text);
 }
 

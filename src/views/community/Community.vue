@@ -1,5 +1,5 @@
 <template>
-<div>Community</div>
+<div>Community(功能开发中...)</div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div>Cart</div>
+  <div>Cart(功能开发中...)</div>
 </template>
 
 <script>

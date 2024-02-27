@@ -16,11 +16,12 @@ export default {
 
   height: 55px;
   background-color: var(--color-background-light);
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 100;
 }
 </style>

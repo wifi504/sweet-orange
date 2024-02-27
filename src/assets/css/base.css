@@ -3,15 +3,16 @@
 /*:root -> 获取根元素html*/
 :root {
   --color-text: #3e3e3e;
-  --color-high-text: #219aff;
-  --color-tint: #a4e0ff;
+  --color-high-text: #ee7821;
+  --color-tint: #fd710a;
+  --color-tint-light: #fff3e6;
   --color-background-light: #ffffff;
   --color-background: #fafafa;
-  --color-background-dark: #e8e8e8;
+  --color-background-dark: #d5d5d5;
 
-  --font-small-size: 9px;
-  --font-normal-size: 14px;
-  --font-large-size: 23px;
+  --font-small-size: 14px;
+  --font-normal-size: 16px;
+  --font-large-size: 20px;
 
   --line-height: 1.5;
 }
