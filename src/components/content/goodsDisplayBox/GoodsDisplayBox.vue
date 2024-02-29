@@ -50,7 +50,9 @@ export default {
       const fontSize = parseFloat(textStyle);
       const boxWidth = this.$refs.detail.clientWidth;
       let textCount = Math.floor(boxWidth / fontSize) * 2
-      console.log('实际与许可字数：' + this.detail.length + ' | ' + textCount);
+      if (this.$store.state.isDebugMode) {
+        console.log('实际与许可字数：' + this.detail.length + ' | ' + textCount);
+      }
       if (this.detail.length < textCount) {
         return this.detail;
       } else {

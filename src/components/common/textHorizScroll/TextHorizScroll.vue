@@ -62,7 +62,9 @@ export default {
       const boxWid = this.boxWidth;
 
       // 如果文本宽度大于框的宽度，启动滚动，否则直接让 1号 显示在开头
-      console.log('字宽与盒宽：' + lineWid + " | " + boxWid)
+      if (this.$store.state.isDebugMode) {
+        console.log('字宽与盒宽：' + lineWid + " | " + boxWid)
+      }
       if (lineWid > boxWid) {
         let is1before2 = true; // 1号 在 2号 左边吗
         // 动画循环函数

@@ -18,7 +18,9 @@ export default {
   },
   methods: {
     doScrollRefresh() {
-      console.log('刷新滚动视图');
+      if (this.$store.state.isDebugMode) {
+        console.log('刷新滚动视图');
+      }
       this.scroll.refresh()
     }
   },

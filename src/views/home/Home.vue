@@ -67,7 +67,9 @@ export default {
   },
   methods: {
     updateView() {
-      console.log('HomeView Updating...');
+      if (this.$store.state.isDebugMode) {
+        console.log('HomeView Updating...');
+      }
       this.$refs.notice.updateScroll();
       this.$refs.video.updateSize();
       if (this.$refs.goods) {
@@ -77,11 +79,12 @@ export default {
       }
       setTimeout(() => {
         this.$refs.home.doScrollRefresh();
-        console.log('---- HomeView Updated!');
+        if (this.$store.state.isDebugMode) {
+          console.log('---- HomeView Updated!');
+        }
       })
     },
     showModalBox(title, content) {
-      console.log("点击")
       this.modalTitle = title;
       this.modalContent = content;
       this.isModalVisible = true;
@@ -99,17 +102,23 @@ export default {
   mounted() {
     // 监听尺寸变化，这种情况要回调 updated
     window.onresize = () => {
-      console.log("Window resize!")
+      if (this.$store.state.isDebugMode) {
+        console.log("Window resize!")
+      }
       this.updateView()
     };
 
     // 加载完毕后进行一次更新
-    console.log("Vue Mounted!")
+    if (this.$store.state.isDebugMode) {
+      console.log("Vue Mounted!")
+    }
     this.updateView()
   },
   updated() {
     // 如果Home里面有变量或组件变化，这种情况要回调 updated
-    console.log("Vue Updated!")
+    if (this.$store.state.isDebugMode) {
+      console.log("Vue Updated!")
+    }
     this.updateView()
   },
   destroyed() {

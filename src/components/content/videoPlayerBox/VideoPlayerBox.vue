@@ -29,12 +29,16 @@ export default {
   },
   methods: {
     updateSize() {
-      console.log("重置播放器窗口尺寸");
+      if (this.$store.state.isDebugMode) {
+        console.log("重置播放器窗口尺寸");
+      }
       this.playerWidth = this.$refs.box.clientWidth;
       this.playerHeight = this.playerWidth * 9 / 16;
     },
     setVideoSource(url) {
-      console.log("设置播放器视频源");
+      if (this.$store.state.isDebugMode) {
+        console.log("设置播放器视频源");
+      }
       const player = this.$refs.player.dp;
       player.switchVideo({
         url: url
