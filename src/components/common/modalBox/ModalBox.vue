@@ -1,6 +1,6 @@
 <template>
   <div id="model-box" @click="closeModal">
-    <div id="model-card" @click="doNone">
+    <div id="model-card" @click.stop>
       <nav-bar class="title">
         <div slot="center">{{ title }}</div>
         <svg @click="closeModal" slot="right" t="1709046651159" class="icon" viewBox="0 0 1175 1024" version="1.1"
@@ -39,9 +39,6 @@ export default {
   methods: {
     closeModal() {
       this.$emit('close-modal');
-    },
-    doNone(e) {
-      e.stopPropagation();
     }
   }
 }
@@ -87,7 +84,7 @@ export default {
   width: 100%;
   min-height: 200px;
   text-align: justify;
-  text-indent: 2em;
+  /*text-indent: 2em;*/
   color: var(--color-text);
 }
 </style>

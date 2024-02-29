@@ -49,7 +49,7 @@ export default {
       const textStyle = getComputedStyle(document.documentElement).getPropertyValue('--font-normal-size');
       const fontSize = parseFloat(textStyle);
       const boxWidth = this.$refs.detail.clientWidth;
-      let textCount = Math.floor(boxWidth / fontSize) * 2
+      let textCount = Math.floor(boxWidth / fontSize) * 2 - 2
       if (this.$store.state.isDebugMode) {
         console.log('实际与许可字数：' + this.detail.length + ' | ' + textCount);
       }
@@ -109,7 +109,7 @@ export default {
 }
 
 .content-detail {
-  text-align: justify;
+  text-align: left;
 }
 
 .content-price {

@@ -6,7 +6,7 @@
       <div slot="center">橘子有点点甜</div>
     </nav-bar>
     <!-- 首页的主板面 -->
-    <scroll class="home-space" ref="home">
+    <scroll class="home-space" ref="home" :show-back-top-button="true">
       <!--  宣传片  -->
       <video-player-box class="home-video" ref="video"/>
       <!--  公告  -->
@@ -20,8 +20,8 @@
         </svg>
       </text-horiz-scroll>
       <!--  商品列表  -->
-      <goods-display-box v-for="good in goods"
-                         ref="goods"
+      <goods-display-box v-for="(good, index) in goods"
+                         ref="goods" :key="index"
                          :name="good.name"
                          :detail="good.detail"
                          :img-url="good.image"
@@ -29,6 +29,7 @@
                          :original-price="good.originalPrice"
                          @show-modal-box="showModalBox"/>
     </scroll>
+    <!--  展示商品详情的模态框  -->
     <modal-box v-if="isModalVisible"
                @close-modal="()=>{this.isModalVisible = false}"
                :title="modalTitle"
