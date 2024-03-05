@@ -13,7 +13,10 @@
               fill="#2D3036" p-id="4223"></path>
         </svg>
       </nav-bar>
-      <div class="content">{{ content }}</div>
+      <div class="content">
+        {{ content }}
+        <div><slot name="content"></slot></div>
+      </div>
     </div>
   </div>
 </template>

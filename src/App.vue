@@ -4,16 +4,34 @@
       <router-view/>
     </keep-alive>
     <main-tab-bar/>
+
+    <!--  声明  -->
+    <modal-box v-if="showInfo" @close-modal="()=>{this.showInfo=false}"
+               title="声明" content="">
+      <div slot="content">
+        <p>此网页为《橘子有点点甜》三创赛项目的H5前端Demo，不具任何商业用途</p>
+        <br>
+        <p>本项目开放源代码许可：</p>
+        <p>GNU General Public License v3.0</p>
+        <br><br><br><br><br><br><br><br>
+        <link-button href="https://github.com/wifi504/sweet-orange/"
+                     text="Open in Github" @btn-click="()=>{this.showInfo=false}"/>
+      </div>
+    </modal-box>
   </div>
 </template>
 
 <script>
 import MainTabBar from "@/components/content/mainTabBar/MainTabBar";
+import ModalBox from "@/components/common/modalBox/ModalBox";
+import LinkButton from "@/components/common/linkButton/LinkButton";
 
 export default {
   name: 'App',
   components: {
-    MainTabBar
+    MainTabBar,
+    ModalBox,
+    LinkButton
   },
   mounted() {
     if (!this.$store.state.isDebugMode) {
@@ -24,7 +42,13 @@ export default {
       console.log('联系我们组长');
       console.log('QQ: 2380088500');
       console.log('WX: SFY031017');
-      console.log = function () {}
+      console.log = function () {
+      }
+    }
+  },
+  data() {
+    return {
+      showInfo: true
     }
   }
 }
