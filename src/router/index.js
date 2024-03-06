@@ -57,13 +57,16 @@ const router = new VueRouter({
   routes
 })
 
-// 全局后置守卫
-router.afterEach((to, from) => {
+// 全局前置守卫
+router.beforeEach((to, from, next) => {
 
   // 修改页面标题
   if (to.meta && to.meta.title) {
     document.title = to.meta.title + ' | 橘子有点点甜'
   }
+
+  // 继续执行管道钩子
+  next()
 })
 
 export default router
