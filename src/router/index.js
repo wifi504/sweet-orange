@@ -7,6 +7,8 @@ const Community = () => import('@/views/community/Community')
 const Cart = () => import('@/views/cart/Cart')
 const Profile = () => import('@/views/profile/Profile')
 
+const Detail = () => import('@/views/detail/Detail')
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -47,6 +49,13 @@ const routes = [
     component: Profile,
     meta: {
       title: '我的'
+    }
+  },
+  {
+    path: '/detail',
+    component: Detail,
+    meta: {
+      title: '详情页'
     }
   }
 ]

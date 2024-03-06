@@ -20,20 +20,18 @@
         </svg>
       </text-horiz-scroll>
       <!--  商品列表  -->
-      <goods-display-box v-for="(good, index) in goods"
-                         ref="goods" :key="index"
+      <goods-display-box v-for="good in goods"
+                         ref="goods"
+                         :key="good.id"
+                         :id="good.id"
                          :name="good.name"
+                         :stock="good.stock"
                          :detail="good.detail"
                          :img-url="good.image"
                          :current-price="good.currentPrice"
                          :original-price="good.originalPrice"
-                         @show-modal-box="showModalBox"/>
+                         @good-click="goodClick"/>
     </scroll>
-    <!--  展示商品详情的模态框  -->
-    <modal-box v-if="isModalVisible"
-               @close-modal="()=>{this.isModalVisible = false}"
-               :title="modalTitle"
-               :content="modalContent"/>
   </div>
 </template>
 
@@ -43,7 +41,6 @@ import NavBar from "@/components/common/navBar/NavBar";
 import TextHorizScroll from "@/components/common/textHorizScroll/TextHorizScroll";
 import VideoPlayerBox from "@/components/content/videoPlayerBox/VideoPlayerBox";
 import GoodsDisplayBox from "@/components/content/goodsDisplayBox/GoodsDisplayBox";
-import ModalBox from "@/components/common/modalBox/ModalBox";
 
 import {getHomeViewData} from "@/network/home";
 
@@ -54,16 +51,12 @@ export default {
     NavBar,
     TextHorizScroll,
     VideoPlayerBox,
-    GoodsDisplayBox,
-    ModalBox
+    GoodsDisplayBox
   },
   data() {
     return {
       noticeText: '',
-      goods: [],
-      isModalVisible: false,
-      modalTitle: '',
-      modalContent: ''
+      goods: []
     }
   },
   methods: {
@@ -85,10 +78,19 @@ export default {
         }
       })
     },
-    showModalBox(title, content) {
-      this.modalTitle = title;
-      this.modalContent = content;
-      this.isModalVisible = true;
+    goodClick(id) {
+      let checkedGood = null
+      for (let good of this.goods) {
+        if (good.id === id) {
+          checkedGood = good
+          break
+        }
+      }
+      const info = JSON.stringify(checkedGood, null, 2)
+      if (this.$store.state.isDebugMode) {
+        console.log(info);
+      }
+      alert(info)
     }
   },
   created() {
