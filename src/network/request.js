@@ -3,7 +3,7 @@ import axios from "axios";
 export function request(config) {
   // 1. 创建实例
   const instance = axios.create({
-    baseURL: 'https://sweet-orange.oss-cn-chengdu.aliyuncs.com/',
+    baseURL: '/sweet-orange/test',
     timeout: 3000
   })
 
