@@ -43,6 +43,11 @@
                      @cart-click="cartClick"
                      :id="this.good.id"
                      :stock="this.good.stock"/>
+
+    <!--  大图展示模态框  -->
+    <div @click="imgClick">
+      <img-model-box :href="good.image" v-show="this.showImg"/>
+    </div>
   </div>
 </template>
 
@@ -50,6 +55,7 @@
 import DetailNavBar from "@/views/detail/childComps/DetailNavBar";
 import Scroll from "@/components/common/scroll/Scroll";
 import DetailFootBar from "@/views/detail/childComps/DetailFootBar";
+import ImgModelBox from "@/views/detail/childComps/ImgModelBox";
 
 import {getDetailViewData} from "@/network/detail";
 
@@ -58,12 +64,14 @@ export default {
   components: {
     DetailNavBar,
     Scroll,
-    DetailFootBar
+    DetailFootBar,
+    ImgModelBox
   },
   data() {
     return {
       good: null,
-      showGood: false
+      showGood: false,
+      showImg: false
     }
   },
   computed: {
@@ -114,13 +122,14 @@ export default {
     },
     contactClick() {
       console.log('顾客需要联系我们并咨询商品ID：' + this.good.id)
+      alert('顾客需要联系我们并咨询商品ID：' + this.good.id)
     },
     cartClick() {
       console.log('加入购物车，ID：' + this.good.id)
       this.$store.commit('addGoodToCart', this.good.id)
     },
     imgClick() {
-      alert('打开图片')
+      this.showImg = !this.showImg
     }
   }
 }
