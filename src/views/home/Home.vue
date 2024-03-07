@@ -88,9 +88,16 @@ export default {
       }
       const info = JSON.stringify(checkedGood, null, 2)
       if (this.$store.state.isDebugMode) {
-        console.log(info);
+        console.log('点击了商品：\n' + info);
       }
-      alert(info)
+      this.$router.push({
+        path: '/detail',
+        query: {
+          'id': id
+        }
+      }).catch(err => {
+        console.log("无效的导航：（别对着同一个按钮点啦！...( ＿ ＿)ノ｜）\n" + err.toString())
+      })
     }
   },
   created() {

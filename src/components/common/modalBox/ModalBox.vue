@@ -1,9 +1,9 @@
 <template>
   <div id="model-box" @click="closeModal">
     <div id="model-card" @click.stop>
-      <nav-bar class="title">
+      <nav-bar class="title" @right-click="closeModal">
         <div slot="center">{{ title }}</div>
-        <svg @click="closeModal" slot="right" t="1709046651159" class="icon" viewBox="0 0 1175 1024" version="1.1"
+        <svg slot="right" t="1709046651159" class="icon" viewBox="0 0 1175 1024" version="1.1"
              xmlns="http://www.w3.org/2000/svg" p-id="4221" width="200" height="200">
           <path
               d="M551.251896 794.52738c-145.792755 0-264.84246-119.049705-264.84246-264.84246s119.049705-264.84246 264.84246-264.84246 264.84246 119.049705 264.84246 264.84246c0 146.655434-119.049705 264.84246-264.84246 264.84246z m0-502.94187c-131.98989 0-238.962089 106.972199-238.96209 238.962089 0 131.98989 106.972199 238.962089 238.96209 238.962089 131.98989 0 238.962089-106.972199 238.962089-238.962089 0-131.98989-106.972199-238.962089-238.962089-238.962089z"

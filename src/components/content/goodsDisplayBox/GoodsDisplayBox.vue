@@ -6,7 +6,7 @@
     </div>
     <div class="content-box"
          :class="{'goods-boxes-nothing': this.stock<=0}">
-      <div class="content-name">{{ name }}</div>
+      <div class="content-name">{{ formatTitle }}</div>
       <div class="content-detail" ref="detail">{{ formatDetail }}</div>
       <div class="content-price">
         <span class="content-current-price">{{ '￥' + currentPrice }}</span>
@@ -57,17 +57,32 @@ export default {
   },
   data() {
     return {
+      formatTitle: '',
       formatDetail: ''
     }
   },
   methods: {
+    getFormatTitle() {
+      const textStyle = getComputedStyle(document.documentElement).getPropertyValue('--font-normal-size');
+      const fontSize = parseFloat(textStyle);
+      const boxWidth = this.$refs.detail.clientWidth;
+      let textCount = Math.floor(boxWidth / fontSize) - 4
+      if (this.$store.state.isDebugMode) {
+        console.log('标题实际与许可字数：' + this.name.length + ' | ' + textCount);
+      }
+      if (this.name.length < textCount) {
+        return this.name;
+      } else {
+        return this.name.substring(0, textCount) + '...'
+      }
+    },
     getFormatDetail() {
       const textStyle = getComputedStyle(document.documentElement).getPropertyValue('--font-normal-size');
       const fontSize = parseFloat(textStyle);
       const boxWidth = this.$refs.detail.clientWidth;
       let textCount = Math.floor(boxWidth / fontSize) * 2 - 2
       if (this.$store.state.isDebugMode) {
-        console.log('实际与许可字数：' + this.detail.length + ' | ' + textCount);
+        console.log('内容实际与许可字数：' + this.detail.length + ' | ' + textCount);
       }
       if (this.detail.length < textCount) {
         return this.detail;
@@ -76,6 +91,7 @@ export default {
       }
     },
     updateDetail() {
+      this.formatTitle = this.getFormatTitle()
       this.formatDetail = this.getFormatDetail()
     }
   },
@@ -151,6 +167,7 @@ export default {
 
 .content-original-price {
   text-decoration: line-through;
+  color: var(--color-light-text);
   margin-left: 8px;
 }
 

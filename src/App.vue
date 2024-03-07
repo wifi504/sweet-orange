@@ -3,7 +3,7 @@
     <keep-alive>
       <router-view/>
     </keep-alive>
-    <main-tab-bar/>
+    <main-tab-bar v-show="this.$route.path !== '/detail'"/>
 
     <!--  声明  -->
     <modal-box v-if="this.$store.state.isDebugMode ? false : showInfo"

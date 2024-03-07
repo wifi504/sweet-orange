@@ -1,12 +1,12 @@
 <template>
   <div class="nav-bar">
-    <div class="nav-left">
+    <div class="nav-left" @click="()=>{this.$emit('left-click')}">
       <slot name="left"></slot>
     </div>
-    <div class="nav-center">
+    <div class="nav-center" @click="()=>{this.$emit('center-click')}">
       <slot name="center"></slot>
     </div>
-    <div class="nav-right">
+    <div class="nav-right" @click="()=>{this.$emit('right-click')}">
       <slot name="right"></slot>
     </div>
   </div>
