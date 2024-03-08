@@ -16,28 +16,46 @@ const store = new Vuex.Store({
     // 利用对象解构合并原有数据
     ...initState
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
-    addGoodToCart(state, id) {
-      // 在购物车中添加指定商品
-      let findGood = state.cart.find(good => good.id === id)
-      if (findGood) {
-        findGood.count++
-      } else {
+    addGoodToCart(state, obj) {
+      // 在购物车中确认是否添加了指定商品
+      let findGood = state.cart.find(good => good.id === obj.id)
+      if (!findGood) {
         state.cart.push({
-          id,
-          count: 1
+          'id': obj.id,
+          'stock': obj.stock,
+          count: 0,
+          select: 0
         })
       }
-      findGood = state.cart.find(good => good.id === id)
-      console.log('完成购物车添加，id=' + id + ',count=' + findGood.count)
+      findGood = state.cart.find(good => good.id === obj.id)
+      // 增加商品数量
+      if (findGood.count < findGood.stock) {
+        findGood.count++
+        console.log('完成购物车添加，id=' + obj.id + ',count=' + findGood.count)
+        return true
+      } else {
+        console.log('无法购物车添加，id=' + obj.id + ',count=' + findGood.count)
+        return false
+      }
+    },
+    removeGoodFromCart(state, obj) {
+      // 在购物车中确认商品是不是只剩一个了
+      let findGood = state.cart.find(good => good.id === obj.id)
+      if (findGood.count === 1) {
+        // 删除这个商品
+        const index = state.cart.findIndex(good => good.id === obj.id)
+        state.cart.splice(index, 1)
+        console.log('完成购物车删除，id=' + obj.id)
+      } else {
+        findGood.count--
+        console.log('完成购物车减少，id=' + obj.id + ',count=' + findGood.count)
+      }
     }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })
 
 // 将所有Vuex更改保存进本地

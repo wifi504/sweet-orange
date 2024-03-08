@@ -16,7 +16,7 @@ export default {
 
   height: 55px;
   background-color: var(--color-background-light);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .1);
 
   position: fixed;
   left: 0;

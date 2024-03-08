@@ -37,7 +37,7 @@ export default {
         return '无货'
       }
       if (this.isAddCart) {
-        return '去结算'
+        return '已加入，去结算'
       }
       return '加入购物车'
     }

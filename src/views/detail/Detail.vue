@@ -126,7 +126,11 @@ export default {
     },
     cartClick() {
       console.log('加入购物车，ID：' + this.good.id)
-      this.$store.commit('addGoodToCart', this.good.id)
+      const obj = {
+        'id': this.good.id,
+        'stock': this.good.stock,
+      }
+      this.$store.commit('addGoodToCart', obj)
     },
     imgClick() {
       this.showImg = !this.showImg
